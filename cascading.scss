@@ -1,0 +1,126 @@
+@mixin alert-clicked(){
+  opacity: 1;
+  content:'clicked!';
+  background: rgba(yellow, .8);
+  color: #000;
+}
+
+
+// Debug
+
+[debug]{
+  border: 2px red dashed;
+  &:before,&:after{
+    font-family: "courier new", sans-serif;
+    font-size: .9rem;
+    font-weight: 300  ;
+    content:'Debug level: 1';
+    padding: .5em;
+    background: rgba(#00FF87, .8);
+    color: #000; 
+    max-height: 30px;
+    margin-top: -30px;
+    display: block;
+    position: absolute;
+    z-index: 99999;
+    opacity: .1;
+  }
+
+  &:hover{
+    &:before,&:after{
+      opacity: 1;
+    }
+  }
+
+  [id]{
+    &:after{
+      content: 'id: .'attr(id);
+      margin-left: 20%;
+    }
+  }
+  [class]{
+    &:after{
+      content: 'class: .'attr(class);
+      margin-left: 40%;
+    }
+  }
+  [href]{
+    &:after{
+      content: 'href: .'attr(href);
+      margin-left: 40%;
+    }
+  }
+  [id][class]{
+    &:after{
+      content: 'class: .'attr(class)'; id: #'attr(id);
+      margin-left: 40%;
+    }
+  }
+  &:not([class]){
+    &:after{
+      content: '';
+    }
+  }
+
+
+  &> [debug]{
+    border: 2px green dashed;
+    &:before{
+      content:'Debug level: 2';}
+    &:before,&:after{
+      background: rgba(#00CB6B, .8);
+    }
+    &> [debug]{
+      border: 2px blue dashed;
+      &:before{
+        content:'Debug level: 3';}
+      &:before,&:after{
+        background: rgba(#00974F, .8);
+      }
+      &> [debug]{
+        border: 2px purple dashed;
+        &:before{
+          content:'Debug level: 4';}
+        &:before,&:after{
+          background: rgba(#006333, .8);
+          color: #fff;
+
+        }
+        &> [debug]{
+          border: 2px orange dashed;
+          &:before{
+            content:'Debug level: 5';}
+          &:before,&:after{
+            background: rgba(#970000, .8);
+          }
+          &> [debug]{
+            border: 2px dodgerblue dashed;
+            &:before{
+              content:'Debug level: 6';}
+            &:before,&:after{
+              background: rgba(#CB0000, .8);
+            }
+            &> [debug]{
+              border: 2px rebeccapurple dashed;
+              &:before{
+                content:'Debug level: 7, well how about stop nesting elements ?';}
+              &:before,&:after{
+                background: rgba(#FF0000, .8);
+              }
+            } 
+          }
+        }
+      } 
+    }
+  }
+}
+
+[debug]:active:before,[debug]:active:after,
+[debug]>[debug]:active:before,[debug]>[debug]:active:after,
+[debug]>[debug]>[debug]:active:before,[debug]>[debug]>[debug]:active:after,
+[debug]>[debug]>[debug]>[debug]:active:before,[debug]>[debug]>[debug]>[debug]:active:after,
+[debug]>[debug]>[debug]>[debug]>[debug]:active:before,[debug]>[debug]>[debug]>[debug]>[debug]:active:after,
+[debug]>[debug]>[debug]>[debug]>[debug]>[debug]:active:before,[debug]>[debug]>[debug]>[debug]>[debug]>[debug]:active:after,
+[debug]>[debug]>[debug]>[debug]>[debug]>[debug]>[debug]:active:before,[debug]>[debug]>[debug]>[debug]>[debug]>[debug]>[debug]:active:after{
+  @include alert-clicked()
+} 
