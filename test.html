@@ -372,7 +372,15 @@
 	<footer>
 		<p>Copyright 2009 Your name</p>
 	</footer>
-
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script>
+	$(function(){
+  var all = $('*');
+  all.each(function(){
+    $(this).attr('debug','');
+  })
+})
+</script>
 </body>
 
 </html>
