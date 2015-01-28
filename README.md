@@ -11,6 +11,16 @@ To use it :
 ----
 To force the cascading debugger, or to have the whole DOM debugged, paste this line to your DevTool console :
 
+javascript: 
+```javascript
+var allElements = document.querySelectorAll('*');
+
+Array.prototype.forEach.call(allElements, function (element) {
+  element.setAttribute('debug', '');
+})
+
+```
+Or jQuery :
 ```
 $(function(){
   var all = $('*');
