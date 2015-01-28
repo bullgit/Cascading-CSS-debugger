@@ -21,7 +21,7 @@ Array.prototype.forEach.call(allElements, function (element) {
 
 ```
 Or jQuery :
-```
+```javascript 
 $(function(){
   var all = $('*');
   all.each(function(){
